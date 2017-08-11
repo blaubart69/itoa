@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+#include "itoa.h"
 
 void printUsage(const char* programname);
 
@@ -34,10 +37,21 @@ int main(int argc, char *argv[]) {
 	char formatString[32];
 	sprintf(formatString, "%s\n", conversion);
 
+	char* binary = isBinarySpecifier(formatString);
+	if (binary != NULL) {
+		*binary = 's';
+	}
+
 	int oneByte;
 	while ( (oneByte = fgetc(fileToPrint)) != EOF) {
-		//printf("%d\n", oneByte);
-		printf(formatString, oneByte);
+		if (binary) {
+			char binaryString[128];
+			_itoa(oneByte, binaryString, 2);
+			printf(formatString, binaryString);
+		}
+		else {
+			printf(formatString, oneByte);
+		}
 	}
 
 	fclose(fileToPrint);

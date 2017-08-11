@@ -11,6 +11,6 @@ int parseBinarySpecifier(const char* spec, char* leadingZeros, int* width) {
 		spec++;
 	}
 
-	atoi()
+	return -1;
 
 }

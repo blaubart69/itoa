@@ -115,6 +115,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="decode.c" />
+    <ClCompile Include="isBinarySpecifier.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="parseBinarySpecifier.c" />
   </ItemGroup>
