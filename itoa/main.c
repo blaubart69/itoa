@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	if (argc > 3) {
-		fprintf(stderr, "to many parameters given\n", argv[3]);
+		fprintf(stderr, "to many parameters given\n");
 		printUsage(argv[0]);
 		return 1;
 	}
@@ -28,9 +28,10 @@ int main(int argc, char *argv[]) {
 		conversion = "%d";
 	}
 
-	FILE *fileToPrint = fopen(argv[1], "rb");
-	if (fileToPrint == NULL) {
-		fprintf(stderr, "filename does not exist");
+	FILE *fileToPrint;
+	errno_t rc = fopen_s(&fileToPrint, argv[1], "rb");
+	if (rc != 0) {
+		fprintf(stderr, "error opening file. rc=%d", rc);
 		return 2;
 	}
 
@@ -62,5 +63,4 @@ int main(int argc, char *argv[]) {
 void printUsage(const char* programname) {
 	fprintf(stderr, "usage: %s filename [format]\n", programname);
 	fprintf(stderr, "   format ... printf format specifiers. sample: %%02X, %%d, ...\n");
-	fprintf(stderr, "   format ... printf format specifiers. sample: °/o02X, °/od, ...\n");
 }

@@ -11,7 +11,7 @@ char* isBinarySpecifier(const char* spec) {
 	} while ((*spec >= '\0' && *spec <= '9') || *spec == '-' );
 
 	if (spec != NULL && *spec == 'b') {
-		return spec;
+		return (char*)spec;
 	}
 
 	return NULL;

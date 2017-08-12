@@ -1,16 +1,15 @@
-#include <stdio.h>
+char* decode(const char* const StringNumber, const int radix, int* result) {
 
-int decode(const char* StringNumber, int radix) {
-
-	int result = 0;
+	int tmpResult = 0;
 	int negativ = 0;
 	int c;
 
 	// check radix
 
-	if ((c = *StringNumber++) == '-') {
+	char* iter = StringNumber;
+	if ((c = *iter++) == '-') {
 		negativ = 1;
-		c = *StringNumber++;
+		c = *iter++;
 	} /* endif */
 
 	do {
@@ -24,14 +23,16 @@ int decode(const char* StringNumber, int radix) {
 			c = c - 'A' + 10;
 		}
 		else {
-			fprintf(stderr, "ERROR: %u is not valid\n", c);
+			//fprintf(stderr, "ERROR: %u is not valid\n", c);
+			return iter;
 		} /* endif */
 
 		  // check overflow!
 
-		result = result * radix + c;
+		tmpResult = tmpResult * radix + c;
 
-	} while ((c = *StringNumber++) != '\0'); /* enddo */
+	} while ((c = *iter++) != '\0'); /* enddo */
 
-	return negativ ? -result : result;
+	*result = negativ ? -tmpResult : tmpResult;
+	return (void*)0;
 }

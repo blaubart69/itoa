@@ -1,11 +1,12 @@
 #include <stdlib.h>
+#include <stdbool.h>
 
-int parseBinarySpecifier(const char* spec, char* leadingZeros, int* width) {
+int parseBinarySpecifier(const char* spec, bool leadingZeros, int* width) {
 	if (*spec++ != '%') {
 		return 1;
 	}
 
-	leadingZeros = (*spec == '0') ? 1 : 0;
+	leadingZeros = (*spec == '0');
 
 	if (leadingZeros) {
 		spec++;
