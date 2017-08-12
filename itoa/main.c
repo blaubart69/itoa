@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -28,10 +30,9 @@ int main(int argc, char *argv[]) {
 		conversion = "%d";
 	}
 
-	FILE *fileToPrint;
-	errno_t rc = fopen_s(&fileToPrint, argv[1], "rb");
-	if (rc != 0) {
-		fprintf(stderr, "error opening file. rc=%d", rc);
+	FILE *fileToPrint = fopen(argv[1], "rb");
+	if (fileToPrint == NULL) {
+		fprintf(stderr, "error opening file");
 		return 2;
 	}
 
