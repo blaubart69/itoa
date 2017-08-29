@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 char* decode(const char* const StringNumber, const int radix, int* result) {
 
 	int tmpResult = 0;
@@ -34,5 +36,5 @@ char* decode(const char* const StringNumber, const int radix, int* result) {
 	} while ((c = *iter++) != '\0'); /* enddo */
 
 	*result = negativ ? -tmpResult : tmpResult;
-	return (void*)0;
+	return NULL;
 }
